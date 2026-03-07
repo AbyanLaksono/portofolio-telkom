@@ -443,38 +443,38 @@ function ProjectsSection() {
 function SkillsSection() {
   const skillGroups = [
     {
-      title: "Bahasa Pemrograman",
-      skills: [
-        { name: "Python", level: 70 },
-        { name: "C/C++", level: 90 },
-        { name: "JavaScript", level: 70 },
-      ],
-    },
+  title: "Bahasa Pemrograman",
+  skills: [
+    { name: "Python", level: 88 },
+    { name: "C/C++", level: 92 },
+    { name: "JavaScript", level: 85 },
+  ],
+},
     {
-      title: "Web Development",
-      skills: [
-        { name: "HTML & CSS", level: 85 },
-        { name: "React", level: 80 },
-        { name: "Node.js", level: 70 },
-        { name: "Authentication & Authorization", level: 72 },
-      ],
-    },
-    {
-      title: "Database & Data Management",
-      skills: [
-        { name: "MySQL / PostgreSQL", level: 60 },
-        { name: "MongoDB / Redis", level: 60 },
-        { name: "Normalisasi Database", level: 85 },
-      ],
-    },
-    {
-      title: "AI & Data Science",
-      skills: [
-        { name: "Machine Learning", level: 65 },
-        { name: "Deep Learning", level: 60 },
-        { name: "Data Analysis (Pandas, NumPy)", level: 75 },
-      ],
-    },
+  title: "Web Development",
+  skills: [
+    { name: "HTML & CSS", level: 85 },
+    { name: "React", level: 82 },
+    { name: "Node.js", level: 80 },
+    { name: "Authentication & Authorization", level: 80 },
+  ],
+},
+{
+  title: "Database & Data Management",
+  skills: [
+    { name: "MySQL / PostgreSQL", level: 88 },
+    { name: "MongoDB / Redis", level: 82 },
+    { name: "Normalisasi Database", level: 90 },
+  ],
+},
+{
+  title: "AI & Data Science",
+  skills: [
+    { name: "Machine Learning", level: 85 },
+    { name: "Deep Learning", level: 88 },
+    { name: "Data Analysis (Pandas, NumPy)", level: 82 },
+  ],
+},
   ]
 
   return (
