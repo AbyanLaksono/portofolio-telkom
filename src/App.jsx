@@ -15,9 +15,25 @@ import myStanding from "./assets/myStanding.png"
 import almamater from "./assets/almamater.png"
 import upiLogo from "./assets/UPI-logo.png"
 
-import portfolio from "./assets/projects/propject.png"
+import project1a from "./assets/projects/project1-a.png"
+import project1b from "./assets/projects/project1-b.png"
+import project1c from "./assets/projects/project1-c.png"
+import project2a from "./assets/projects/project2-a.png"
+import project2b from "./assets/projects/project2-b.png"
 
-const sections = ["lobby", "about", "pengalaman", "projects", "skills"]
+import project3a from "./assets/projects/project3-a.png"
+import project3b from "./assets/projects/project3-b.png"
+import project3c from "./assets/projects/project3-c.png"
+import project3d from "./assets/projects/project3-d.png"
+
+import cert1 from "./assets/certificates/1.png"
+import cert2 from "./assets/certificates/2.png"
+import certMagang from "./assets/certificates/magang.jpg"
+import certPddikti from "./assets/certificates/Sertifikat PDDIKTI.png"
+
+import logo from "./assets/bigaby-logo.png"
+
+const sections = ["lobby", "about", "pengalaman", "projects", "skills", "certificates"]
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -96,24 +112,33 @@ export default function App() {
       <div className="absolute w-[600px] h-[600px] bg-amber-900/20 blur-3xl rounded-full top-[-200px] left-[-200px]" />
       <div className="absolute w-[500px] h-[500px] bg-orange-800/20 blur-3xl rounded-full bottom-[-200px] right-[-200px]" />
 
+    {/* LOGO WATERMARK */}
+<div className="fixed top-6 left-6 z-50 opacity-60">
+  <img
+    src={logo}
+    alt="BIGABY Logo"
+    className="w-24 h-24 object-contain grayscale hover:opacity-90 transition duration-500"
+  />
+</div>
+
       {/* NAVBAR */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 bg-[#2c1d14]/80 backdrop-blur-md border border-amber-900 rounded-full px-10 py-4 z-50 shadow-xl">
-        <div className="flex gap-8 text-sm uppercase tracking-widest">
-          {sections.map(sec => (
-            <button
-              key={sec}
-              onClick={() => setActive(sec)}
-              className={`transition ${
-                active === sec
-                  ? "text-amber-400"
-                  : "text-amber-200 hover:text-white"
-              }`}
-            >
-              {sec}
-            </button>
-          ))}
-        </div>
-      </nav>
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 bg-[#2c1d14]/80 backdrop-blur-md border border-amber-900 rounded-full px-10 py-4 z-50 shadow-xl">
+  <div className="flex gap-8 text-sm uppercase tracking-widest">
+    {sections.map(sec => (
+      <button
+        key={sec}
+        onClick={() => setActive(sec)}
+        className={`transition ${
+          active === sec
+            ? "text-amber-400"
+            : "text-amber-200 hover:text-white"
+        }`}
+      >
+        {sec}
+      </button>
+    ))}
+  </div>
+</nav>
 
       <div className="pt-32">
         <AnimatePresence mode="wait">
@@ -135,6 +160,11 @@ export default function App() {
           {active === "projects" && (
             <DoorTransition>
               <ProjectsSection />
+            </DoorTransition>
+          )}
+          {active === "certificates" && (
+            <DoorTransition>
+              <CertificatesSection />
             </DoorTransition>
           )}
           {active === "skills" && (
@@ -377,15 +407,86 @@ function PengalamanSection() {
 
 /* ================= PROJECTS ================= */
 
+
 function ProjectsSection() {
 
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [currentImage, setCurrentImage] = useState(0)
+
   const projects = [
+
     {
       title: "Project Parkiran menggunakan Face Recognition",
-      desc: "Project kecil yang berfungsi untuk mempermudah keluarnya jalur Antrian parkiran dengan menggunakan teknologi face recognition.",
-      image: "/projects/propject.png",
+      desc: "Project kecil yang berfungsi untuk mempermudah keluarnya jalur antrian parkiran menggunakan teknologi face recognition.",
+      details: `
+Project ini dibuat untuk mempercepat proses keluar kendaraan di area parkiran dengan menggunakan sistem Face Recognition.
+
+Fitur utama:
+• Sistem identifikasi wajah pengguna
+• Verifikasi otomatis kendaraan
+• Integrasi dengan database parkir
+• Mengurangi antrian kendaraan
+
+Teknologi yang digunakan:
+• Python
+• OpenCV
+• Face Recognition Model
+• Database System
+      `,
+      images: [project1a, project1b, project1c],
       github: "https://drive.google.com/file/d/1yR3ONM684rsJQ_FduYiJTMj1Fu8pkJC4/view?usp=sharing"
+    },
+
+    {
+      title: "BIG - Quran (Murotal & Al-Quran Web)",
+      desc: "Website Al-Quran digital dengan fitur membaca Al-Quran dan memutar murotal audio secara online.",
+      details: `
+BIG - Quran adalah website Al-Quran digital yang saya kembangkan menggunakan React.
+
+Fitur utama:
+• Membaca Al-Quran digital
+• Audio murotal per ayat
+• Navigasi antar surat
+• Bookmark ayat
+• UI modern dan responsif
+
+Teknologi yang digunakan:
+• React
+• Vite
+• API Al-Quran
+• Audio Player System
+      `,
+      images: [project2a, project2b],
+      github: "https://abyanlaksono.github.io/big-quran/#/"
+    },
+
+    {
+      title: "FiveM Modding & Server Development",
+      desc: "Pengembangan modding FiveM termasuk PED modding, server system development, dan store modding.",
+      details: `
+Project ini berfokus pada pengembangan modding dan sistem server untuk platform FiveM.
+
+Fokus pengembangan:
+• Modding Character PED
+• Server Development
+• Custom Script Server
+• Asset Modding
+
+Store yang dikembangkan:
+BIGABY STORE
+
+Statistik:
+• 203 Members telah berlangganan
+• FiveM Modding
+• Server Development
+• Custom Asset Store
+
+Project ini digunakan oleh komunitas server roleplay untuk meningkatkan pengalaman bermain FiveM.
+      `,
+      images: [project3a, project3b, project3c, project3d],
+      github: "https://bigaby-store.example.com"
     }
+
   ]
 
   return (
@@ -398,6 +499,202 @@ function ProjectsSection() {
       <div className="grid md:grid-cols-3 gap-8">
 
         {projects.map((project, i) => (
+
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.2 }}
+            onClick={() => {
+              setSelectedProject(project)
+              setCurrentImage(0)
+            }}
+            className="bg-[#2c1d14] border border-amber-900 rounded-xl overflow-hidden shadow-xl hover:scale-105 transition cursor-pointer"
+          >
+
+            <img
+              src={project.images[0]}
+              className="w-full h-48 object-cover"
+            />
+
+            <div className="p-6 space-y-3">
+
+              <h3 className="text-xl font-semibold">
+                {project.title}
+              </h3>
+
+              <p className="text-amber-200 text-sm">
+                {project.desc}
+              </p>
+
+              <span className="text-amber-400 text-sm">
+                Go to the page →
+              </span>
+
+            </div>
+
+          </motion.div>
+
+        ))}
+
+      </div>
+
+
+
+      {/* MODAL PROJECT DETAIL */}
+
+      <AnimatePresence>
+        {selectedProject && (
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50"
+          >
+
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              className="bg-[#2c1d14] border border-amber-800 rounded-xl p-8 max-w-4xl w-full shadow-2xl"
+            >
+
+              {/* HEADER */}
+
+              <div className="flex justify-between items-center mb-6">
+
+                <h3 className="text-2xl font-bold text-amber-300">
+                  {selectedProject.title}
+                </h3>
+
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="text-amber-400 hover:text-white"
+                >
+                  Close
+                </button>
+
+              </div>
+
+
+              {/* IMAGE SLIDER */}
+
+              <div className="relative mb-6">
+
+                <img
+                  src={selectedProject.images[currentImage]}
+                  className="w-full h-80 object-cover rounded-lg"
+                />
+
+                {/* PREV */}
+
+                <button
+                  onClick={() =>
+                    setCurrentImage(
+                      (currentImage - 1 + selectedProject.images.length) %
+                      selectedProject.images.length
+                    )
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 px-4 py-2 rounded"
+                >
+                  ◀
+                </button>
+
+                {/* NEXT */}
+
+                <button
+                  onClick={() =>
+                    setCurrentImage(
+                      (currentImage + 1) % selectedProject.images.length
+                    )
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 px-4 py-2 rounded"
+                >
+                  ▶
+                </button>
+
+              </div>
+
+
+              {/* DESCRIPTION */}
+
+              <p className="text-amber-200 whitespace-pre-line leading-relaxed">
+                {selectedProject.details}
+              </p>
+
+
+              {/* LINK */}
+
+              <div className="mt-6">
+
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  className="text-amber-400 hover:underline"
+                >
+                  Open Project →
+                </a>
+
+              </div>
+
+            </motion.div>
+
+          </motion.div>
+
+        )}
+      </AnimatePresence>
+
+    </div>
+  )
+}
+
+/* ================= CERTIFICATES ================= */
+
+function CertificatesSection() {
+
+  const certificates = [
+    {
+      title: "Certificate 1",
+      issuer: "Training / Course",
+      year: "2026",
+      image: cert1,
+      link: cert1
+    },
+    {
+      title: "Certificate 2",
+      issuer: "Training / Course",
+      year: "2026",
+      image: cert2,
+      link: cert2
+    },
+    {
+      title: "Sertifikat Magang",
+      issuer: "Universitas Pendidikan Indonesia",
+      year: "2026",
+      image: certMagang,
+      link: certMagang
+    },
+    {
+      title: "Sertifikat PDDIKTI",
+      issuer: "Universitas Pendidikan Indonesia",
+      year: "2025",
+      image: certPddikti,
+      link: certPddikti
+    }
+  ]
+
+  return (
+    <div className="max-w-6xl w-full space-y-16">
+
+      <h2 className="text-4xl font-bold text-center text-amber-300">
+        Certificates
+      </h2>
+
+      <div className="grid md:grid-cols-2 gap-10">
+
+        {certificates.map((cert, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 40 }}
@@ -407,26 +704,28 @@ function ProjectsSection() {
           >
 
             <img
-              src={project.image}
-              className="w-full h-48 object-cover"
+              src={cert.image}
+              className="w-full h-64 object-cover"
             />
 
             <div className="p-6 space-y-3">
+
               <h3 className="text-xl font-semibold">
-                {project.title}
+                {cert.title}
               </h3>
 
-              <p className="text-amber-200 text-sm">
-                {project.desc}
+              <p className="text-amber-400 text-sm">
+                {cert.issuer} • {cert.year}
               </p>
 
               <a
-                href={project.github}
+                href={cert.link}
                 target="_blank"
                 className="text-amber-400 text-sm hover:underline"
               >
-                View Project →
+                View Certificate →
               </a>
+
             </div>
 
           </motion.div>
@@ -441,48 +740,75 @@ function ProjectsSection() {
 /* ================= SKILLS ================= */
 
 function SkillsSection() {
+
+  const [showAcademic, setShowAcademic] = useState(false)
+
   const skillGroups = [
     {
-  title: "Bahasa Pemrograman",
-  skills: [
-    { name: "Python", level: 88 },
-    { name: "C/C++", level: 92 },
-    { name: "JavaScript", level: 85 },
-  ],
-},
+      title: "Bahasa Pemrograman",
+      skills: [
+        { name: "Python", level: 88 },
+        { name: "C/C++", level: 92 },
+        { name: "JavaScript", level: 85 },
+      ],
+    },
     {
-  title: "Web Development",
-  skills: [
-    { name: "HTML & CSS", level: 85 },
-    { name: "React", level: 82 },
-    { name: "Node.js", level: 80 },
-    { name: "Authentication & Authorization", level: 80 },
-  ],
-},
-{
-  title: "Database & Data Management",
-  skills: [
-    { name: "MySQL / PostgreSQL", level: 88 },
-    { name: "MongoDB / Redis", level: 82 },
-    { name: "Normalisasi Database", level: 90 },
-  ],
-},
-{
-  title: "AI & Data Science",
-  skills: [
-    { name: "Machine Learning", level: 85 },
-    { name: "Deep Learning", level: 88 },
-    { name: "Data Analysis (Pandas, NumPy)", level: 82 },
-  ],
-},
+      title: "Web Development",
+      skills: [
+        { name: "HTML & CSS", level: 85 },
+        { name: "React", level: 82 },
+        { name: "Node.js", level: 80 },
+        { name: "Authentication & Authorization", level: 80 },
+      ],
+    },
+    {
+      title: "Database & Data Management",
+      skills: [
+        { name: "MySQL / PostgreSQL", level: 88 },
+        { name: "MongoDB / Redis", level: 82 },
+        { name: "Normalisasi Database", level: 90 },
+      ],
+    },
+    {
+      title: "AI & Data Science",
+      skills: [
+        { name: "Machine Learning", level: 85 },
+        { name: "Deep Learning", level: 88 },
+        { name: "Data Analysis (Pandas, NumPy)", level: 82 },
+      ],
+    },
+  ]
+
+  const academicSkills = [
+    { code:"IK100", name:"Algoritma & Pemrograman 1", grade:"A" },
+    { code:"IK160", name:"Algoritma & Pemrograman 2", grade:"A" },
+    { code:"IK240", name:"Struktur Data", grade:"B+" },
+    { code:"IK290", name:"Pemrograman Berorientasi Objek", grade:"A" },
+    { code:"IK230", name:"Design & Pemrograman Web", grade:"B+" },
+    { code:"IK170", name:"Sistem Basis Data", grade:"A" },
+    { code:"IK380", name:"Database Non Relational", grade:"B+" },
+    { code:"IK532", name:"Deep Learning", grade:"A" },
+    { code:"IK542", name:"Computer Vision", grade:"A" },
+    { code:"IK505", name:"Data Mining & Warehouse", grade:"A" },
   ]
 
   return (
+
     <div className="max-w-6xl w-full space-y-16">
 
       <h2 className="text-4xl font-bold text-center text-amber-300">
         Skills & Expertise
       </h2>
+
+      {/* BUTTON OPEN WINDOW */}
+      <div className="flex justify-center">
+        <button
+          onClick={() => setShowAcademic(true)}
+          className="px-6 py-3 bg-amber-700 hover:bg-amber-600 rounded-lg text-sm uppercase tracking-wider shadow-lg transition"
+        >
+          View Academic Skill Parameters
+        </button>
+      </div>
 
       {skillGroups.map((group, index) => (
         <motion.div
@@ -492,6 +818,7 @@ function SkillsSection() {
           transition={{ delay: index * 0.2 }}
           className="space-y-8"
         >
+
           <h3 className="text-2xl font-semibold text-amber-200 border-b border-amber-800 pb-2">
             {group.title}
           </h3>
@@ -499,6 +826,7 @@ function SkillsSection() {
           <div className="space-y-6">
             {group.skills.map((skill, i) => (
               <div key={skill.name} className="space-y-2">
+
                 <div className="flex justify-between text-sm text-amber-100">
                   <span>{skill.name}</span>
                   <span>{skill.level}%</span>
@@ -512,11 +840,80 @@ function SkillsSection() {
                     className="h-3 bg-gradient-to-r from-amber-600 to-orange-500 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.6)]"
                   />
                 </div>
+
               </div>
             ))}
           </div>
+
         </motion.div>
       ))}
+
+      {/* MODAL WINDOW */}
+      <AnimatePresence>
+        {showAcademic && (
+
+          <motion.div
+            initial={{ opacity:0 }}
+            animate={{ opacity:1 }}
+            exit={{ opacity:0 }}
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          >
+
+            <motion.div
+              initial={{ scale:0.8 }}
+              animate={{ scale:1 }}
+              exit={{ scale:0.8 }}
+              className="bg-[#2c1d14] border border-amber-800 rounded-xl p-8 max-w-3xl w-full max-h-[80vh] overflow-y-auto shadow-2xl"
+            >
+
+              <div className="flex justify-between items-center mb-6">
+
+                <h3 className="text-2xl font-bold text-amber-300">
+                  Academic Skill Parameters
+                </h3>
+
+                <button
+                  onClick={()=>setShowAcademic(false)}
+                  className="text-amber-400 hover:text-white"
+                >
+                  Close
+                </button>
+
+              </div>
+
+              <table className="w-full text-sm">
+
+                <thead className="text-amber-400 border-b border-amber-700">
+                  <tr>
+                    <th className="py-2">Code</th>
+                    <th>Course</th>
+                    <th>Grade</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  {academicSkills.map((course,i)=>(
+                    <tr
+                      key={i}
+                      className="border-b border-amber-900 hover:bg-amber-900/20"
+                    >
+                      <td className="py-2">{course.code}</td>
+                      <td>{course.name}</td>
+                      <td>{course.grade}</td>
+                    </tr>
+                  ))}
+
+                </tbody>
+
+              </table>
+
+            </motion.div>
+
+          </motion.div>
+
+        )}
+      </AnimatePresence>
 
     </div>
   )
